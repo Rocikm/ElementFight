@@ -16,7 +16,10 @@ public class ProjectileSpawner : MonoBehaviour
         foreach (GestureBinding binding in bindings)
         {
             if (args.gesture == binding.gesture)
-                SpawnProjectile(binding.prefab, args.startDirection, args.startPosition);
+            {
+                Vector3 direction = binding.useEndDirection ? args.endDirection : args.startDirection;
+                SpawnProjectile(binding.prefab, direction, args.startPosition);
+            }
         }
     }
 
@@ -33,5 +36,6 @@ public class ProjectileSpawner : MonoBehaviour
     {
         public Gesture gesture;
         public GameObject prefab;
+        public bool useEndDirection;
     }
 }

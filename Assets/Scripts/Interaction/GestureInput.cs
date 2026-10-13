@@ -44,7 +44,8 @@ public class GestureInput : MonoBehaviour
                 transform.position - startPosition);
 
             GestureEventArgs eventArgs = new GestureEventArgs(
-                EvaluateGesture(difference), startPosition, startDirection);
+                EvaluateGesture(difference), startPosition, startDirection,
+                transform.position, transform.forward);
 
             OnGesturePerformed?.Invoke(this, eventArgs);            
         }
@@ -130,13 +131,18 @@ public class GestureInput : MonoBehaviour
         public Gesture gesture;
         public Vector3 startPosition;
         public Vector3 startDirection;
+        public Vector3 endPosition;
+        public Vector3 endDirection;
 
         public GestureEventArgs(
-            Gesture gesture,Vector3 startPosition, Vector3 startDirection)
+            Gesture gesture, Vector3 startPosition, Vector3 startDirection,
+            Vector3 endPosition, Vector3 endDirection)
         {
             this.gesture = gesture;
             this.startPosition = startPosition;
             this.startDirection = startDirection;
+            this.endPosition = endPosition;
+            this.endDirection = endDirection;
         }
     }
 }

@@ -201,12 +201,16 @@ MonoBehaviour:
   bindings:
   - gesture: 0
     prefab: {fileID: 1928623898}
+    useEndDirection: 1
   - gesture: 3
     prefab: {fileID: 1012032690}
+    useEndDirection: 0
   - gesture: 1
     prefab: {fileID: 2163337}
+    useEndDirection: 0
   - gesture: 2
     prefab: {fileID: 1226696918}
+    useEndDirection: 0
 --- !u!4 &151501445 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2264491541105851552, guid: 9e0fd903b632f2572b7fc4867f832f5c, type: 3}
@@ -5408,9 +5412,49 @@ PrefabInstance:
       propertyPath: field of view
       value: 60
       objectReference: {fileID: 0}
+    - target: {fileID: 4693778080148015597, guid: f7d5a753128ce99e3bf2df461f8a8358, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7010574
+      objectReference: {fileID: 0}
+    - target: {fileID: 4693778080148015597, guid: f7d5a753128ce99e3bf2df461f8a8358, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.09229599
+      objectReference: {fileID: 0}
+    - target: {fileID: 4693778080148015597, guid: f7d5a753128ce99e3bf2df461f8a8358, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.09229599
+      objectReference: {fileID: 0}
+    - target: {fileID: 4693778080148015597, guid: f7d5a753128ce99e3bf2df461f8a8358, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.7010574
+      objectReference: {fileID: 0}
+    - target: {fileID: 4693778080148015597, guid: f7d5a753128ce99e3bf2df461f8a8358, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -15
+      objectReference: {fileID: 0}
     - target: {fileID: 4744147865606705036, guid: f7d5a753128ce99e3bf2df461f8a8358, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6398506484677680468, guid: f7d5a753128ce99e3bf2df461f8a8358, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7010574
+      objectReference: {fileID: 0}
+    - target: {fileID: 6398506484677680468, guid: f7d5a753128ce99e3bf2df461f8a8358, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.09229599
+      objectReference: {fileID: 0}
+    - target: {fileID: 6398506484677680468, guid: f7d5a753128ce99e3bf2df461f8a8358, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.09229599
+      objectReference: {fileID: 0}
+    - target: {fileID: 6398506484677680468, guid: f7d5a753128ce99e3bf2df461f8a8358, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.7010574
+      objectReference: {fileID: 0}
+    - target: {fileID: 6398506484677680468, guid: f7d5a753128ce99e3bf2df461f8a8358, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -15
       objectReference: {fileID: 0}
     - target: {fileID: 6901351497765790102, guid: f7d5a753128ce99e3bf2df461f8a8358, type: 3}
       propertyPath: m_IsActive
@@ -5436,6 +5480,9 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 144997589}
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4097289524411850156, guid: f7d5a753128ce99e3bf2df461f8a8358, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1795148572}
     - targetCorrespondingSourceObject: {fileID: 7408047252579119305, guid: f7d5a753128ce99e3bf2df461f8a8358, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1147623762}
@@ -5724,6 +5771,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1694763602}
   - component: {fileID: 1694763603}
+  - component: {fileID: 1694763604}
   m_Layer: 0
   m_Name: ProjectileSpawner
   m_TagString: Untagged
@@ -5764,6 +5812,32 @@ MonoBehaviour:
   - {fileID: 2163337}
   spawnLocation: {fileID: 1694763602}
   spawnTime: 5
+--- !u!114 &1694763604
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1694763601}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49e544399f338fc638198a1d07469263, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gestureInput: {fileID: 1795148572}
+  bindings:
+  - gesture: 0
+    prefab: {fileID: 1928623898}
+    useEndDirection: 1
+  - gesture: 2
+    prefab: {fileID: 1012032690}
+    useEndDirection: 0
+  - gesture: 3
+    prefab: {fileID: 1226696918}
+    useEndDirection: 0
+  - gesture: 1
+    prefab: {fileID: 2163337}
+    useEndDirection: 0
 --- !u!1001 &1713404996
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5779,6 +5853,10 @@ PrefabInstance:
     - target: {fileID: 8135023674665499069, guid: 58d0a4ac86f2348deb02f3880c71378e, type: 3}
       propertyPath: m_Name
       value: XR Interaction Simulator
+      objectReference: {fileID: 0}
+    - target: {fileID: 8135023674665499069, guid: 58d0a4ac86f2348deb02f3880c71378e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8518324294302271954, guid: 58d0a4ac86f2348deb02f3880c71378e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5830,11 +5908,44 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5412868030025297402, guid: 7b5a87681f77454a2a70eda4f58bb827, type: 3}
   m_PrefabInstance: {fileID: 2130772182293454821}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1759858949 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4097289524411850156, guid: f7d5a753128ce99e3bf2df461f8a8358, type: 3}
+  m_PrefabInstance: {fileID: 986724696}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1795148570 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1156855508653386324, guid: f7d5a753128ce99e3bf2df461f8a8358, type: 3}
   m_PrefabInstance: {fileID: 986724696}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1795148572
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1759858949}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee60b1fbdb6b6aba89b9bf4da0d60fd4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  activationAction:
+    m_UseReference: 1
+    m_Action:
+      m_Name: Activation
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: c3685e58-75a2-410d-a121-65fe012256d4
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: -4289430672226363583, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  minActivationDistance: 0.01
+  referenceFrame: {fileID: 1932276642}
+  autoActivation: 1
+  autoActivationDistance: 0.2
 --- !u!1 &1905704058 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 4596c58568d0951b4886f02f2d5aa6f6, type: 3}
