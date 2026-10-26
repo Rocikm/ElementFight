@@ -5,6 +5,14 @@ public class ProjectileSpawner : MonoBehaviour
 {
     [SerializeField] private GestureInput gestureInput;
     [SerializeField] private GestureBinding[] bindings;
+    private Transform target;
+    private AimAssistSettings aimAssistSettings;
+
+    public void SetAimAssist(Transform target, AimAssistSettings settings)
+    {
+        this.target = target;
+        aimAssistSettings = settings;
+    }
 
     void Start()
     {
@@ -28,6 +36,10 @@ public class ProjectileSpawner : MonoBehaviour
             GameObject spawned = Instantiate(prefab, transform.position, Quaternion.identity);
             Projectile projectile = spawned.GetComponent<Projectile>();
             projectile.Initialize(gameObject, position);
+
+            if (target != null)
+                projectile.SetAimAssist(target, aimAssistSettings);
+
             projectile.Launch(direction);
     }
 

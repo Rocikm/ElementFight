@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: AirAttack
   m_EditorClassIdentifier: 
   elementType: 0
-  baseDamage: 5
+  baseDamage: 10
   speed: 10
   movementType: 0
-  alignForwardDirection: 0
+  alignForwardDirection: 1
   requiresPreparation: 0
   preparationTime: 0
   cleanupTime: 1

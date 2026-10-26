@@ -11,7 +11,9 @@ public class Projectile : MonoBehaviour
     public Vector3 initialPosition { get; private set; }
     private ProjectileState state;
     private GameObject owner;
+    private Transform target;
     private float timer;
+    private float expirationTime = 5f;
 
     public event Action<Projectile> Spawned;
     public event Action<Projectile> Ready;
@@ -43,6 +45,15 @@ public class Projectile : MonoBehaviour
             Prepare(initialPosition);
     }
 
+    public void SetAimAssist(Transform target, AimAssistSettings settings)
+    {
+        this.target = target;
+        movement.SetAimAssistSettings(settings);
+
+        if (state == ProjectileState.Launched)
+            movement.SetAimAssist(target, true);
+    }
+
     public void Prepare(Vector3 targetPosition)
     {
         state = ProjectileState.Preparing;
@@ -57,47 +68,79 @@ public class Projectile : MonoBehaviour
             return;
 
         if (elementData.movementType == MovementType.Curved)
+        {
+            Vector3 launchTarget = 
+                target == null ? 
+                direction * 8 : 
+                target.position - owner.transform.position;
+
             movement.LaunchCurved(Quaternion.AngleAxis(90, Vector3.up) * owner.transform.forward,
-                direction * 8, 2, elementData);
+                launchTarget, launchTarget.magnitude * 0.45f, elementData);
+        }
+
         else
             movement.Launch(direction, elementData);
 
+        if (target != null)
+            movement.SetAimAssist(target, true);
+
         state = ProjectileState.Launched;
+        timer = expirationTime;
         Launched?.Invoke(this);
+    }
+
+    public static void SpawnProjectile(GameObject prefab, GameObject owner, Vector3 position, Vector3 direction)
+    {
+        GameObject spawned = Instantiate(prefab, position, Quaternion.identity);
+        Projectile projectile = spawned.GetComponent<Projectile>();
+        projectile.Initialize(owner, position);
+        projectile.Launch(direction);
     }
 
     private void Update()
     {
-        switch(state)
+        switch (state)
         {
             case ProjectileState.Preparing:
-                WaitForPrepared(Time.deltaTime);
+                if (TickTimer())
+                {
+                    Ready?.Invoke(this);
+                    state = ProjectileState.AwaitingAction;
+                    timer = expirationTime;
+                }
                 break;
+                
+            case ProjectileState.AwaitingAction:
+                if (TickTimer())
+                {
+                    Launch(Vector3.down);
+                    movement.TogglePhysics(true);
+                }
+                break;
+
+            case ProjectileState.Launched:
+                if (TickTimer())
+                {
+                    movement.Stop();
+                    state = ProjectileState.Impacted;
+                    // movement.TogglePhysics(true);
+                }
+                break;
+
             case ProjectileState.Impacted:
-                WaitForDestroyed(Time.deltaTime);
+                if (TickTimer())
+                {
+                    Destroy(gameObject);
+                }
                 break;
         }
     }
 
-    private void WaitForPrepared(float deltaTime)
+    private bool TickTimer()
     {
-        timer -= deltaTime;
+        timer -= Time.deltaTime;
 
-        if (timer <= 0)
-        {
-            Ready?.Invoke(this);
-            state = ProjectileState.AwaitingAction;
-        }
-    }
-
-    private void WaitForDestroyed(float deltaTime)
-    {
-        timer -= deltaTime;
-
-        if (timer <= 0)
-        {
-            Destroy(gameObject);
-        }
+        return timer <= 0f;
     }
 
     private void OnTriggerEnter(Collider other)
