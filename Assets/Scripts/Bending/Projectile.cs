@@ -72,10 +72,12 @@ public class Projectile : MonoBehaviour
             Vector3 launchTarget = 
                 target == null ? 
                 direction * 8 : 
-                target.position - owner.transform.position;
+                direction * (target.position - transform.position).magnitude;
+
+            // Vector3 launchTarget = direction * 8f;
 
             movement.LaunchCurved(Quaternion.AngleAxis(90, Vector3.up) * owner.transform.forward,
-                launchTarget, launchTarget.magnitude * 0.45f, elementData);
+                launchTarget, launchTarget.magnitude * 0.25f, elementData);
         }
 
         else

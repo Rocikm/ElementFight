@@ -11,9 +11,11 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private InputActionProperty reviveAction;
     private float currentStamina;
     private float currentHealth;
+    private Transform currentTarget;
 
     void Awake()
     {
+        currentTarget = target;
         UpdateTarget();
         enemy.OnDefeated += HandleOnEnemyDefeated;
     }
@@ -21,7 +23,11 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         if (reviveAction.action.ReadValue<float>() > 0.5)
+        {
             enemy.Revive(enemySpawn.position);
+            currentTarget = target;
+            UpdateTarget();
+        }
     }
 
     void OnValidate()
@@ -33,13 +39,13 @@ public class PlayerController : MonoBehaviour
     {
         foreach (var spawner in projectileSpawners)
         {
-            spawner.SetAimAssist(target, aimAssistSettings);
+            spawner.SetAimAssist(currentTarget, aimAssistSettings);
         }
     }
 
     private void HandleOnEnemyDefeated()
     {
-        target = null;
+        currentTarget = null;
         UpdateTarget();
     }
 }

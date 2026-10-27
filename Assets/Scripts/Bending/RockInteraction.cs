@@ -44,7 +44,7 @@ public class RockInteraction : MonoBehaviour, IProjectileComponent
         if (!waitingForHit)
             return;
 
-        GestureInput handInput = other.GetComponentInParent<GestureInput>();
+        GestureInput handInput = other.GetComponent<GestureInput>();
         
         if (handInput == null)
             return;
