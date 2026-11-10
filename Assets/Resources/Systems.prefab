@@ -143,6 +143,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e2002c28e2a60e55a548995bf5e137c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fightInProgress: 0
+  fightEndDelay: 3
 --- !u!1 &7894660799511169821
 GameObject:
   m_ObjectHideFlags: 0
