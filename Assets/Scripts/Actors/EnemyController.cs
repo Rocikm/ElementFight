@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class EnemyController : MonoBehaviour, IDamageable
+public class EnemyController : MonoBehaviour
 {
     [SerializeField] private Transform eyes;
     [SerializeField] private Transform torso;
@@ -11,25 +11,32 @@ public class EnemyController : MonoBehaviour, IDamageable
     [SerializeField] private Transform player;
     [SerializeField] private EnemyMovement movement;
     [SerializeField] private EnemyAttack attack;
-    private float currentHealth;
-    private float currentStamina;
+    [SerializeField] private Fighter fighter;
     private Vector3 desiredDirection;
     private float timer = 0;
     private float attackTimer = 0;
     private State currentState;
 
-    public event Action OnDefeated;
+    // public event Action OnDefeated;
 
-    void Start()
+    void OnEnable()
     {
-        currentHealth = enemyData.maxHealth;
-        currentStamina = enemyData.maxStamina;
+        // fighter.OnStarted += OnFightStarted;
+        fighter.OnDamageTaken += HandleOnDamageTaken;
+        fighter.OnDefeated += HandleOnDefeated;
+        currentState = State.free;
     }
-    
+
+    void OnDisable()
+    {
+        fighter.OnDamageTaken -= HandleOnDamageTaken;
+        fighter.OnDefeated -= HandleOnDefeated;
+    }
+
 
     void Update()
     {
-        if (currentState == State.defeated)
+        if (currentState == State.defeated || !fighter.CombatEnabled)
             return;
 
         timer -= Time.deltaTime;
@@ -46,10 +53,9 @@ public class EnemyController : MonoBehaviour, IDamageable
         }
     }
 
-    public void Revive(Vector3 position)
+    public void OnFightStarted(Fighter fighter)
     {
-        currentHealth = enemyData.maxHealth;
-        transform.position = position;
+        // transform.position = position;
         currentState = State.free;
     }
 
@@ -66,28 +72,27 @@ public class EnemyController : MonoBehaviour, IDamageable
 
     }
 
-    public void TakeDamage(ElementData elementData)
+    public void HandleOnDamageTaken(Fighter fighter, float amount)
     {
         if (currentState == State.defeated)
             return;
 
-        currentHealth = Mathf.Max(0, currentHealth - elementData.baseDamage);
-        
         attack.CancelAttack();
 
         float time;
-        
-        if (currentHealth <= 0.001f)
-        {
-            movement.PlayHitReaction(ReactionType.Knockout, out time);
-            currentState = State.defeated;
-            OnDefeated?.Invoke();
-            return;
-        }
 
         movement.PlayHitReaction(ReactionType.Hit, out time);
         currentState = State.staggered;
         timer = time;
+    }
+
+    public void HandleOnDefeated(Fighter fighter)
+    {
+        if (currentState == State.defeated)
+            return;
+
+        movement.PlayHitReaction(ReactionType.Knockout, out float time);
+        currentState = State.defeated;
     }
 
     private void ResetHeight()

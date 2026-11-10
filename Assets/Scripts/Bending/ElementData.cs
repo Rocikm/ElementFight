@@ -4,7 +4,8 @@ using UnityEngine;
 public class ElementData : ScriptableObject
 {
     public ElementType elementType;
-    public float baseDamage;
+    public float baseDamage = 10f;
+    public float staminaCost = 10f;
     public float speed = 5;
     public MovementType movementType;
     public bool alignForwardDirection;

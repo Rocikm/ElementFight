@@ -15,9 +15,9 @@ MonoBehaviour:
   maxHealth: 100
   maxStamina: 100
   staminaRecovery: 10
-  desiredDistanceMin: 5
-  desiredDistanceMax: 10
+  desiredDistanceMin: 10
+  desiredDistanceMax: 15
   movementTime: 1.2
   turnTime: 0.8
-  attackTime: 4
+  attackTime: 2
   minTurnAngle: 30

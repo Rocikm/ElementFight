@@ -5,6 +5,7 @@ public class ProjectileSpawner : MonoBehaviour
 {
     [SerializeField] private GestureInput gestureInput;
     [SerializeField] private GestureBinding[] bindings;
+    [SerializeField] private Fighter playerFighter;
     private Transform target;
     private AimAssistSettings aimAssistSettings;
 
@@ -33,14 +34,17 @@ public class ProjectileSpawner : MonoBehaviour
 
     private void SpawnProjectile(GameObject prefab, Vector3 direction, Vector3 position)
     {
-            GameObject spawned = Instantiate(prefab, transform.position, Quaternion.identity);
-            Projectile projectile = spawned.GetComponent<Projectile>();
-            projectile.Initialize(gameObject, position);
+        if (!playerFighter.TryUseStamina(prefab.GetComponent<Projectile>().elementData.staminaCost))
+            return;
 
-            if (target != null)
-                projectile.SetAimAssist(target, aimAssistSettings);
+        GameObject spawned = Instantiate(prefab, transform.position, Quaternion.identity);
+        Projectile projectile = spawned.GetComponent<Projectile>();
+        projectile.Initialize(gameObject, position);
 
-            projectile.Launch(direction);
+        if (target != null)
+            projectile.SetAimAssist(target, aimAssistSettings);
+
+        projectile.Launch(direction);
     }
 
     [System.Serializable]

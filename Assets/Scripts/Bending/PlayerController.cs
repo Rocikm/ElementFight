@@ -8,26 +8,26 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Transform target;
     [SerializeField] private Transform enemySpawn;
     [SerializeField] private AimAssistSettings aimAssistSettings;
-    [SerializeField] private InputActionProperty reviveAction;
-    private float currentStamina;
-    private float currentHealth;
+    // [SerializeField] private InputActionProperty reviveAction;
+    private FightManager fightManager;
     private Transform currentTarget;
 
     void Awake()
     {
+        fightManager = GameManager.Instance.fightManager;
         currentTarget = target;
         UpdateTarget();
-        enemy.OnDefeated += HandleOnEnemyDefeated;
+        fightManager.OnFightEnded += HandleOnFightEnded;
     }
 
     void Update()
     {
-        if (reviveAction.action.ReadValue<float>() > 0.5)
-        {
-            enemy.Revive(enemySpawn.position);
-            currentTarget = target;
-            UpdateTarget();
-        }
+        // if (reviveAction.action.ReadValue<float>() > 0.5)
+        // {
+        //     enemy.OnFightStarted(enemySpawn.position);
+        //     currentTarget = target;
+        //     UpdateTarget();
+        // }
     }
 
     void OnValidate()
@@ -43,7 +43,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void HandleOnEnemyDefeated()
+    private void HandleOnFightEnded(Fighter winner, Fighter loser)
     {
         currentTarget = null;
         UpdateTarget();

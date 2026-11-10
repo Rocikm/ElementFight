@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   elementType: 0
   baseDamage: 10
-  speed: 10
+  staminaCost: 30
+  speed: 20
   movementType: 0
   alignForwardDirection: 1
   requiresPreparation: 0

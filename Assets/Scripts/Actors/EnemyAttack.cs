@@ -5,6 +5,7 @@ public class EnemyAttack : MonoBehaviour
     [SerializeField] private Animator animator;
     [SerializeField] private AttackBinding[] attackBindings;
     [SerializeField] private EnemyAnimations animations;
+    [SerializeField] private Fighter fighter;
     private AttackBinding currentBinding;
     private Transform target;
     private bool isAttacking = false;
@@ -57,11 +58,16 @@ public class EnemyAttack : MonoBehaviour
         if (isAttacking)
             return false;
 
-        // int index = Random.Range(0, attackBindings.Length);
-        int index = (lastAttack + 1) % attackBindings.Length;
+        int index = Random.Range(0, attackBindings.Length);
+        // int index = (lastAttack + 1) % attackBindings.Length;
+        AttackBinding binding = attackBindings[index];
+
+        if (!fighter.TryUseStamina(binding.prefab.GetComponent<Projectile>().elementData.staminaCost))
+            return false;
+
         lastAttack = index;
         
-        currentBinding = attackBindings[index];
+        currentBinding = binding;
         this.target = target;
 
         timer = 0;
