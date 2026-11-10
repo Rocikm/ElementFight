@@ -80,6 +80,7 @@ Transform:
   - {fileID: 5909154815935680587}
   - {fileID: 5047544383618413972}
   - {fileID: 3085587485807290021}
+  - {fileID: 3077818220973277310}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &9045978402659665337
@@ -97,6 +98,51 @@ MonoBehaviour:
   effectManager: {fileID: 8500640700948589084}
   audioManager: {fileID: 6481403955690053592}
   saveManager: {fileID: 2952946923190343669}
+  fightManager: {fileID: 3137418993428338630}
+--- !u!1 &7117701817015546068
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3077818220973277310}
+  - component: {fileID: 3137418993428338630}
+  m_Layer: 0
+  m_Name: FightManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3077818220973277310
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7117701817015546068}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5812099849448603114}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3137418993428338630
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7117701817015546068}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e2002c28e2a60e55a548995bf5e137c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7894660799511169821
 GameObject:
   m_ObjectHideFlags: 0
