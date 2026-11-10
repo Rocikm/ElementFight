@@ -77,7 +77,7 @@ public class FightBoard : MonoBehaviour
         boardRoot.SetActive(true);
         fightStarted = false;
         
-        playerTransform.position = playerStart.position;
+        // playerTransform.position = playerStart.position;
         // player.transform.rotation = playerStart.rotation;
 
         fightResultText.gameObject.SetActive(true);

@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour
         currentTarget = target;
         UpdateTarget();
         fightManager.OnFightEnded += HandleOnFightEnded;
+        fightManager.OnFightStarted += HandleOnFightStarted;
     }
 
     void Update()
@@ -46,6 +47,12 @@ public class PlayerController : MonoBehaviour
     private void HandleOnFightEnded(Fighter winner, Fighter loser)
     {
         currentTarget = null;
+        UpdateTarget();
+    }
+
+    private void HandleOnFightStarted(Fighter winner, Fighter loser)
+    {
+        currentTarget = target;
         UpdateTarget();
     }
 }
