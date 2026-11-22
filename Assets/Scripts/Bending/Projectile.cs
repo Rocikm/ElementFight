@@ -67,20 +67,20 @@ public class Projectile : MonoBehaviour
         if (elementData.requiresPreparation && state != ProjectileState.AwaitingAction)
             return;
 
-        if (elementData.movementType == MovementType.Curved)
-        {
-            Vector3 launchTarget = 
-                target == null ? 
-                direction * 8 : 
-                direction * (target.position - transform.position).magnitude;
+        // if (elementData.movementType == MovementType.Curved)
+        // {
+        //     Vector3 launchTarget = 
+        //         target == null ? 
+        //         direction * 8 : 
+        //         direction * (target.position - transform.position).magnitude;
 
-            // Vector3 launchTarget = direction * 8f;
+        //     // Vector3 launchTarget = direction * 8f;
 
-            movement.LaunchCurved(Quaternion.AngleAxis(90, Vector3.up) * owner.transform.forward,
-                launchTarget, launchTarget.magnitude * 0.25f, elementData);
-        }
+        //     movement.LaunchCurved(Quaternion.AngleAxis(90, Vector3.up) * owner.transform.forward,
+        //         launchTarget, launchTarget.magnitude * 0.25f, elementData);
+        // }
 
-        else
+        // else
             movement.Launch(direction, elementData);
 
         if (target != null)

@@ -32,7 +32,7 @@ public class EnemyMovement : MonoBehaviour
 
         // Angle relative to the enemy's forward direction.
         float angle =
-            Mathf.Atan2(localDirection.x, localDirection.z) * Mathf.Rad2Deg;
+            Mathf.Atan2(localDirection.x, localDirection.z) * Mathf.Rad2Deg + 45;
 
         if (angle < 0f)
             angle += 360f;

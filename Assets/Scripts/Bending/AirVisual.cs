@@ -22,6 +22,7 @@ public class AirVisual : MonoBehaviour, IProjectileComponent
 
     private void OnImpacted(Projectile projectile, Collider other)
     {
+        Debug.Log(transform.forward);
         if (impactParticles != null)
             effectManager.Play(impactParticles, transform.position, Quaternion.Euler(transform.forward), new EffectOptions{});
     }

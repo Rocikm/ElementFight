@@ -13,6 +13,7 @@ public class EnemyAttack : MonoBehaviour
     private float timer = 0;
     private int animationLayer;
     private int lastAttack = -1;
+    private GameObject currentPrefab;
 
     void Awake()
     {
@@ -30,8 +31,11 @@ public class EnemyAttack : MonoBehaviour
                 Vector3 attackDirection = 
                     (target.position - currentBinding.origin.position).normalized;
 
+                GameObject attackPrefab = currentPrefab != null 
+                    ? currentPrefab : currentBinding.prefab;
+
                 Projectile.SpawnProjectile(
-                    currentBinding.prefab,
+                    attackPrefab,
                     gameObject,
                     currentBinding.origin.position,
                     attackDirection
@@ -49,6 +53,11 @@ public class EnemyAttack : MonoBehaviour
     public void CancelAttack()
     {
         isAttacking = false;
+    }
+
+    public void SetAttackPrefab(GameObject prefab)
+    {
+        currentPrefab = prefab;
     }
 
     public bool PlayRandomAttack(Transform target, out float animationLength)

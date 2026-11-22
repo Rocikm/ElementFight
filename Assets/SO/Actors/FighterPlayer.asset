@@ -14,4 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   maxStamina: 100
-  staminaRecovery: 10
+  staminaRecovery: 5
+  attackStaminaCost: 25

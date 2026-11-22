@@ -3,7 +3,8 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Actors/Fighter")]
 public class FighterData : ScriptableObject
 {
-    public float maxHealth;
-    public float maxStamina;
-    public float staminaRecovery;
+    public float maxHealth = 100;
+    public float maxStamina = 100;
+    public float staminaRecovery = 20;
+    public float attackStaminaCost = 25;
 }

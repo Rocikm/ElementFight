@@ -8,6 +8,8 @@ public class Fighter : MonoBehaviour, IDamageable
     private float currentHealth;
     private float currentStamina;
 
+    public FighterData Data => data;
+
     public float CurrentHealth => currentHealth;
     public float CurrentStamina => currentStamina;
     public float MaxHealth => data.maxHealth;
@@ -30,8 +32,8 @@ public class Fighter : MonoBehaviour, IDamageable
 
     void Update()
     {
-        if (!combatEnabled)
-            return;
+        // if (!combatEnabled)
+        //     return;
 
         currentStamina = Mathf.Min(data.maxStamina,
             currentStamina + data.staminaRecovery * Time.deltaTime);
@@ -43,7 +45,7 @@ public class Fighter : MonoBehaviour, IDamageable
             return false;
 
         currentStamina -= amount;
-        currentStamina = Mathf.Max(0, currentStamina);
+        currentStamina = Mathf.Clamp(currentStamina, 0, MaxStamina);
 
         return true;
     }
@@ -70,6 +72,17 @@ public class Fighter : MonoBehaviour, IDamageable
     {
         combatEnabled = enabled;
         OnStarted?.Invoke(this);
+
+        // if (enabled)
+        // {
+        //     currentHealth = data.maxHealth;
+        //     currentStamina = data.maxStamina;
+        // }
+        // else
+        // {
+        //     currentHealth = 0;
+        //     currentStamina = 0;
+        // }
     }
 
     public void ResetStats()

@@ -34,7 +34,9 @@ public class ProjectileSpawner : MonoBehaviour
 
     private void SpawnProjectile(GameObject prefab, Vector3 direction, Vector3 position)
     {
-        if (!playerFighter.TryUseStamina(prefab.GetComponent<Projectile>().elementData.staminaCost))
+        // if (!playerFighter.TryUseStamina(prefab.GetComponent<Projectile>().elementData.staminaCost))
+        //     return; 
+        if (!playerFighter.TryUseStamina(playerFighter.Data.attackStaminaCost))
             return;
 
         GameObject spawned = Instantiate(prefab, transform.position, Quaternion.identity);

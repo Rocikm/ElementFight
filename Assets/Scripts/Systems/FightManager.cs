@@ -83,6 +83,9 @@ public class FightManager : MonoBehaviour
 
         OnFightEnded?.Invoke(winner, loser);
 
+        fighter1.ResetStats();
+        fighter2.ResetStats();
+
         fighter1 = null;
         fighter2 = null;
     }
