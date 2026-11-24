@@ -137,7 +137,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8135023674665499069, guid: 58d0a4ac86f2348deb02f3880c71378e, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8518324294302271954, guid: 58d0a4ac86f2348deb02f3880c71378e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -932,22 +932,26 @@ MonoBehaviour:
     startRotation: 0
     animation: {fileID: -203655887218126122, guid: 6aa311d7aa3443fbf985be72fac21c82, type: 3}
     origin: {fileID: 408855993}
-    prefab: {fileID: 1812728771}
+    prefab: {fileID: 1779670605}
+    elementData: {fileID: 11400000, guid: e3bfc0678b0a353628ea76954a7443af, type: 2}
   - timeAfterSpawn: 0.5
     startRotation: 0
     animation: {fileID: -203655887218126122, guid: 181c2d807df2de7e18fe30a81b620b87, type: 3}
     origin: {fileID: 408855993}
     prefab: {fileID: 308820976}
+    elementData: {fileID: 11400000, guid: a4ce26eafa11a6f9cad500c5a6828e4b, type: 2}
   - timeAfterSpawn: 0.5
     startRotation: 0
     animation: {fileID: -203655887218126122, guid: a839c5905f0e27c858072ff68ebcc1df, type: 3}
     origin: {fileID: 1902210426}
     prefab: {fileID: 1812728771}
+    elementData: {fileID: 11400000, guid: e8e30b86eedefb3b99f791c2ee80dca3, type: 2}
   - timeAfterSpawn: 1.8
     startRotation: -75
     animation: {fileID: -203655887218126122, guid: e373ab161fa7c30dbba79472c7dd95cb, type: 3}
     origin: {fileID: 1810341942}
-    prefab: {fileID: 308820976}
+    prefab: {fileID: 670787147}
+    elementData: {fileID: 11400000, guid: 9db2f3e76b3c3941d8ba775949b11713, type: 2}
   animations: {fileID: 11400000, guid: 2adecd23e7d39dbe49bce9540b3ecdaf, type: 2}
   fighter: {fileID: 247917039}
 --- !u!95 &247917041
@@ -994,6 +998,7 @@ MonoBehaviour:
   - {fileID: 284681558}
   damageColor: {r: 1, g: 0, b: 0, a: 0.5882353}
   flashDuration: 0.2
+  damageAudio: {fileID: 0}
 --- !u!136 &247917044
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1035,21 +1040,23 @@ MonoBehaviour:
   - type: 0
     overlayColor: {r: 2.9960787, g: 2.9960787, b: 2.9960787, a: 1}
     attackPrefab: {fileID: 2642111295176071580, guid: c40dd9168c8d8cf77ae6d786304cc1ce, type: 3}
+    elementData: {fileID: 11400000, guid: a4ce26eafa11a6f9cad500c5a6828e4b, type: 2}
   - type: 1
     overlayColor: {r: 0, g: 0.6779688, b: 1.9622642, a: 1}
     attackPrefab: {fileID: 2382845666124129580, guid: e451149c869505d83bdbb036bc0f41f9, type: 3}
+    elementData: {fileID: 11400000, guid: e3bfc0678b0a353628ea76954a7443af, type: 2}
   - type: 2
     overlayColor: {r: 0.7169812, g: 0.25245816, b: 0, a: 1}
     attackPrefab: {fileID: 9212356694844170588, guid: d378c25d516a3c83db122693208701f5, type: 3}
+    elementData: {fileID: 11400000, guid: 9db2f3e76b3c3941d8ba775949b11713, type: 2}
   - type: 3
     overlayColor: {r: 1.8301886, g: 0, b: 0, a: 1}
     attackPrefab: {fileID: 2542341768079311921, guid: bb4297480bda6b410b897c223aa9c7c3, type: 3}
+    elementData: {fileID: 11400000, guid: e8e30b86eedefb3b99f791c2ee80dca3, type: 2}
   - type: 4
     overlayColor: {r: 0.63199997, g: 0, b: 1.7176471, a: 1}
     attackPrefab: {fileID: 0}
-  - type: 0
-    overlayColor: {r: 0, g: 0, b: 0, a: 0}
-    attackPrefab: {fileID: 0}
+    elementData: {fileID: 0}
 --- !u!4 &281698677 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6398506484677680468, guid: f7d5a753128ce99e3bf2df461f8a8358, type: 3}
@@ -1117,6 +1124,8 @@ MonoBehaviour:
   aimAssistSettings:
     alignmentThreshold: 0.6
     turnSpeed: 0.5
+    initialStrength: 0.1
+    initialMaxAngle: 25
 --- !u!4 &307134646 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4693778080148015597, guid: f7d5a753128ce99e3bf2df461f8a8358, type: 3}
@@ -1764,9 +1773,6 @@ PrefabInstance:
       addedObject: {fileID: 515274859}
     - targetCorrespondingSourceObject: {fileID: 3532147719545808645, guid: f7d5a753128ce99e3bf2df461f8a8358, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 515274860}
-    - targetCorrespondingSourceObject: {fileID: 3532147719545808645, guid: f7d5a753128ce99e3bf2df461f8a8358, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 515274865}
     - targetCorrespondingSourceObject: {fileID: 3532147719545808645, guid: f7d5a753128ce99e3bf2df461f8a8358, type: 3}
       insertIndex: -1
@@ -1823,29 +1829,7 @@ MonoBehaviour:
   - {fileID: 159024336}
   damageColor: {r: 0.5764706, g: 0.3137255, b: 0.23137255, a: 1}
   flashDuration: 0.2
---- !u!114 &515274860
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 515274849}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 98b3c76f983aefcabab419b1e25ee54c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  fighter: {fileID: 515274852}
-  stamina:
-  - {fileID: 0}
-  - {fileID: 2055710122}
-  health:
-  - {fileID: 1276172812}
-  - {fileID: 1302487796}
-  lowStaminaColor: {r: 0, g: 0, b: 0, a: 1}
-  fullStaminaColor: {r: 0, g: 1, b: 1, a: 1}
-  lowHealthColor: {r: 0, g: 0, b: 0, a: 1}
-  fullHealthColor: {r: 1, g: 0, b: 0, a: 1}
+  damageAudio: {fileID: 8300000, guid: 4589120cbce8179de9207f5b6a98e0ed, type: 3}
 --- !u!4 &515274861 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3592525158218719608, guid: f7d5a753128ce99e3bf2df461f8a8358, type: 3}
@@ -3517,7 +3501,7 @@ Transform:
   m_GameObject: {fileID: 1004469840}
   serializedVersion: 2
   m_LocalRotation: {x: 0.00000001862645, y: 0.12142533, z: -0, w: 0.9926006}
-  m_LocalPosition: {x: -0.0544, y: 0.1114, z: 0.0134}
+  m_LocalPosition: {x: -0.0017, y: 0.1041, z: -0.0159}
   m_LocalScale: {x: 0.012, y: 0.012, z: 0.012}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -3835,21 +3819,25 @@ MonoBehaviour:
     animation: {fileID: -203655887218126122, guid: 6aa311d7aa3443fbf985be72fac21c82, type: 3}
     origin: {fileID: 1173230759}
     prefab: {fileID: 1812728771}
+    elementData: {fileID: 0}
   - timeAfterSpawn: 0.5
     startRotation: 0
     animation: {fileID: -203655887218126122, guid: 181c2d807df2de7e18fe30a81b620b87, type: 3}
     origin: {fileID: 1173230759}
     prefab: {fileID: 308820976}
+    elementData: {fileID: 0}
   - timeAfterSpawn: 0.5
     startRotation: 0
     animation: {fileID: -203655887218126122, guid: a839c5905f0e27c858072ff68ebcc1df, type: 3}
     origin: {fileID: 286263526}
     prefab: {fileID: 1812728771}
+    elementData: {fileID: 0}
   - timeAfterSpawn: 1.8
     startRotation: -75
     animation: {fileID: -203655887218126122, guid: e373ab161fa7c30dbba79472c7dd95cb, type: 3}
     origin: {fileID: 1076370376}
     prefab: {fileID: 308820976}
+    elementData: {fileID: 0}
   animations: {fileID: 11400000, guid: 2adecd23e7d39dbe49bce9540b3ecdaf, type: 2}
   fighter: {fileID: 1042412527}
 --- !u!114 &1042412525
@@ -8797,7 +8785,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1163106892}
-  - component: {fileID: 1163106893}
   - component: {fileID: 1163106894}
   - component: {fileID: 1163106898}
   - component: {fileID: 1163106895}
@@ -8825,24 +8812,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 515274851}
   m_LocalEulerAnglesHint: {x: 10, y: 0, z: 0}
---- !u!114 &1163106893
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1163106891}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 36c10cf75ba67d4dc86a9064d72c44c4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  testPrefab:
-  - {fileID: 9212356694844170588, guid: d378c25d516a3c83db122693208701f5, type: 3}
-  - {fileID: 2542341768079311921, guid: bb4297480bda6b410b897c223aa9c7c3, type: 3}
-  - {fileID: 1331646248}
-  spawnLocation: {fileID: 1163106892}
-  spawnTime: 2
 --- !u!114 &1163106894
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8859,17 +8828,22 @@ MonoBehaviour:
   bindings:
   - gesture: 0
     prefab: {fileID: 308820976}
+    elementData: {fileID: 11400000, guid: a4ce26eafa11a6f9cad500c5a6828e4b, type: 2}
     useEndDirection: 1
   - gesture: 3
     prefab: {fileID: 1779670605}
+    elementData: {fileID: 11400000, guid: e3bfc0678b0a353628ea76954a7443af, type: 2}
     useEndDirection: 0
   - gesture: 1
     prefab: {fileID: 670787147}
+    elementData: {fileID: 11400000, guid: a21ef47e653bf47a084f52351b80b94b, type: 2}
     useEndDirection: 0
   - gesture: 2
     prefab: {fileID: 1812728771}
+    elementData: {fileID: 11400000, guid: e8e30b86eedefb3b99f791c2ee80dca3, type: 2}
     useEndDirection: 0
   playerFighter: {fileID: 515274852}
+  attackFailedClip: {fileID: 8300000, guid: 46fc093d18323479ca4bee365c6abc2f, type: 3}
 --- !u!114 &1163106895
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8945,7 +8919,7 @@ SphereCollider:
   m_Enabled: 1
   serializedVersion: 3
   m_Radius: 0.08485951
-  m_Center: {x: 0.024594456, y: -0.05, z: -0.28}
+  m_Center: {x: 0.024594456, y: -0.08, z: -0.28}
 --- !u!114 &1163106898
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8963,7 +8937,6 @@ MonoBehaviour:
   playerData: {fileID: 11400000, guid: 02193d910df8d75ed8935d958d731bd7, type: 2}
   blockParticles: {fileID: 1782032438}
   blockAudio: {fileID: 8300000, guid: 462ee0af63a0275c18d0b50e497daefe, type: 3}
-  damageAudio: {fileID: 8300000, guid: 53534e82fb8cb7031ac6885e35df70bc, type: 3}
 --- !u!1 &1173230758
 GameObject:
   m_ObjectHideFlags: 0
@@ -9289,11 +9262,6 @@ PrefabInstance:
 --- !u!4 &1331646247 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5040210073352758518, guid: cdc40ff6f82cd736a854e290c3814ffa, type: 3}
-  m_PrefabInstance: {fileID: 1331646246}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1331646248 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1614365245940092306, guid: cdc40ff6f82cd736a854e290c3814ffa, type: 3}
   m_PrefabInstance: {fileID: 1331646246}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1332520889
@@ -9844,7 +9812,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1419113765}
-  - component: {fileID: 1419113766}
   - component: {fileID: 1419113767}
   - component: {fileID: 1419113771}
   - component: {fileID: 1419113768}
@@ -9872,24 +9839,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 515274850}
   m_LocalEulerAnglesHint: {x: 10, y: 0, z: 0}
---- !u!114 &1419113766
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1419113764}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 36c10cf75ba67d4dc86a9064d72c44c4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  testPrefab:
-  - {fileID: 2542341768079311921, guid: bb4297480bda6b410b897c223aa9c7c3, type: 3}
-  - {fileID: 1614365245940092306, guid: cdc40ff6f82cd736a854e290c3814ffa, type: 3}
-  - {fileID: 670787147}
-  spawnLocation: {fileID: 1419113765}
-  spawnTime: 5
 --- !u!114 &1419113767
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9906,17 +9855,22 @@ MonoBehaviour:
   bindings:
   - gesture: 0
     prefab: {fileID: 308820976}
+    elementData: {fileID: 11400000, guid: a4ce26eafa11a6f9cad500c5a6828e4b, type: 2}
     useEndDirection: 1
   - gesture: 2
     prefab: {fileID: 1779670605}
+    elementData: {fileID: 11400000, guid: e3bfc0678b0a353628ea76954a7443af, type: 2}
     useEndDirection: 0
   - gesture: 1
     prefab: {fileID: 670787147}
+    elementData: {fileID: 11400000, guid: a21ef47e653bf47a084f52351b80b94b, type: 2}
     useEndDirection: 0
   - gesture: 3
     prefab: {fileID: 1812728771}
+    elementData: {fileID: 11400000, guid: e8e30b86eedefb3b99f791c2ee80dca3, type: 2}
     useEndDirection: 0
   playerFighter: {fileID: 515274852}
+  attackFailedClip: {fileID: 8300000, guid: 46fc093d18323479ca4bee365c6abc2f, type: 3}
 --- !u!114 &1419113768
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9992,7 +9946,7 @@ SphereCollider:
   m_Enabled: 1
   serializedVersion: 3
   m_Radius: 0.08092051
-  m_Center: {x: -0.12, y: -0.05, z: -0.28}
+  m_Center: {x: -0.12, y: -0.08, z: -0.28}
 --- !u!114 &1419113771
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10010,7 +9964,6 @@ MonoBehaviour:
   playerData: {fileID: 11400000, guid: 02193d910df8d75ed8935d958d731bd7, type: 2}
   blockParticles: {fileID: 1782032438}
   blockAudio: {fileID: 8300000, guid: 462ee0af63a0275c18d0b50e497daefe, type: 3}
-  damageAudio: {fileID: 8300000, guid: 53534e82fb8cb7031ac6885e35df70bc, type: 3}
 --- !u!1 &1457498568
 GameObject:
   m_ObjectHideFlags: 0
@@ -10036,7 +9989,7 @@ Transform:
   m_GameObject: {fileID: 1457498568}
   serializedVersion: 2
   m_LocalRotation: {x: -0.13489366, y: 0.030234098, z: 0.9902693, w: 0.016012996}
-  m_LocalPosition: {x: 0.062, y: 0.0781, z: 0.0177}
+  m_LocalPosition: {x: 0.0027, y: 0.0963, z: -0.0058}
   m_LocalScale: {x: 0.012, y: 0.012, z: 0.012}
   m_ConstrainProportionsScale: 1
   m_Children:

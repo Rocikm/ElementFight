@@ -13,6 +13,7 @@ public class ElementData : ScriptableObject
     public float preparationTime;
     public float cleanupTime;
     public Vector3 spawnOffset;
+    public Vector3 initialDirection = Vector3.forward;
     public ElementAudioData audioData;
 }
 

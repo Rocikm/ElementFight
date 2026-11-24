@@ -6,9 +6,11 @@ using System;
 public class Projectile : MonoBehaviour
 {
     [SerializeField] private ProjectileMovement movement;
-    [field:SerializeField] public ElementData elementData { get; private set; }
     [SerializeField] private MonoBehaviour[] components;
-    public Vector3 initialPosition { get; private set; }
+    public Vector3 InitialPosition { get; private set; }
+    public ElementData ElementData => elementData;
+
+    private ElementData elementData;
     private ProjectileState state;
     private GameObject owner;
     private Transform target;
@@ -22,10 +24,11 @@ public class Projectile : MonoBehaviour
     public event Action<Projectile, Collider> Impacted;
 
 
-    public void Initialize(GameObject owner, Vector3 initialPosition)
+    public void Initialize(ElementData elementData, GameObject owner, Vector3 initialPosition)
     {
+        this.elementData = elementData;
         this.owner = owner;
-        this.initialPosition = initialPosition;
+        this.InitialPosition = initialPosition;
         transform.position += elementData.spawnOffset;
 
         IProjectileComponent[] pComponents = GetComponents<IProjectileComponent>();
@@ -66,21 +69,31 @@ public class Projectile : MonoBehaviour
     {
         if (elementData.requiresPreparation && state != ProjectileState.AwaitingAction)
             return;
+        
+        direction = direction.normalized;
 
-        // if (elementData.movementType == MovementType.Curved)
-        // {
-        //     Vector3 launchTarget = 
-        //         target == null ? 
-        //         direction * 8 : 
-        //         direction * (target.position - transform.position).magnitude;
+        if (elementData.movementType == MovementType.Curved)
+        {
+            Vector3 launchTarget = 
+                target == null ? 
+                transform.position + direction * 8 : 
+                transform.position + direction * (target.position - transform.position).magnitude;
 
-        //     // Vector3 launchTarget = direction * 8f;
+            Vector3 forward = direction.normalized;
+            Vector3 right = Vector3.Cross(Vector3.up, forward).normalized;
+            Vector3 up = Vector3.Cross(forward, right).normalized;
 
-        //     movement.LaunchCurved(Quaternion.AngleAxis(90, Vector3.up) * owner.transform.forward,
-        //         launchTarget, launchTarget.magnitude * 0.25f, elementData);
-        // }
+            Vector3 rotate = elementData.initialDirection;
 
-        // else
+            Vector3 adjustedDirection =
+                forward * rotate.z +
+                up * rotate.y +
+                right * rotate.x;
+
+            movement.LaunchCurved(adjustedDirection,
+                launchTarget, (launchTarget - transform.position).magnitude * 0.4f, elementData);
+        }
+        else
             movement.Launch(direction, elementData);
 
         if (target != null)
@@ -91,11 +104,12 @@ public class Projectile : MonoBehaviour
         Launched?.Invoke(this);
     }
 
-    public static void SpawnProjectile(GameObject prefab, GameObject owner, Vector3 position, Vector3 direction)
+    public static void SpawnProjectile(GameObject prefab, ElementData elementData, GameObject owner, Vector3 position, Vector3 direction, Transform target)
     {
         GameObject spawned = Instantiate(prefab, position, Quaternion.identity);
         Projectile projectile = spawned.GetComponent<Projectile>();
-        projectile.Initialize(owner, position);
+        projectile.Initialize(elementData, owner, position);
+        projectile.SetAimAssist(target, new AimAssistSettings{alignmentThreshold = 0.4f, turnSpeed = 0.2f});
         projectile.Launch(direction);
     }
 

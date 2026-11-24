@@ -10,6 +10,7 @@ public class FighterInitializer : MonoBehaviour
         public FighterType type;
         [ColorUsage(true, true)] public Color overlayColor = Color.white;
         public GameObject attackPrefab;
+        public ElementData elementData;
     }
 
     [Header("References")]
@@ -39,6 +40,7 @@ public class FighterInitializer : MonoBehaviour
             );
 
             enemyAttack.SetAttackPrefab(settings.attackPrefab);
+            enemyAttack.SetAttackData(settings.elementData);
 
             return;
         }

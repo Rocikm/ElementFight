@@ -22,4 +22,5 @@ MonoBehaviour:
   preparationTime: 0
   cleanupTime: 0
   spawnOffset: {x: 0, y: 0, z: 0}
+  initialDirection: {x: 0.15, y: 0, z: 1}
   audioData: {fileID: 11400000, guid: 81db682fc616d17acbc5dbfa3588e3bf, type: 2}

@@ -76,6 +76,7 @@ public class ProjectileMovement : MonoBehaviour
     {
         initialPosition = transform.position;
         velocity = initialDirection * data.speed;
+        speed = data.speed;
         targetPosition = target;
         this.radius = radius;
         isCurveEnabled = true;
@@ -145,6 +146,7 @@ public class ProjectileMovement : MonoBehaviour
             float accelerationAmount = 1 - Mathf.SmoothStep(0.5f, 0.95f, aligned);
             Vector3 acceleration = 220 * accelerationAmount * (anchor - transform.position).normalized;
             velocity += acceleration * deltaTime;
+            velocity = velocity.normalized * speed;
 
             if (aligned > 0.999f || aligned < -0.75f)
                 isCurveEnabled = false;
@@ -191,4 +193,6 @@ public class AimAssistSettings
 {
     public float alignmentThreshold;
     public float turnSpeed;
+    public float initialStrength = 0.5f; // 0 = disabled, 1 = fully face target
+    public float initialMaxAngle = 35f;  // Maximum correction angle in degrees
 }

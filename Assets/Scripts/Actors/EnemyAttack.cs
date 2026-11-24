@@ -14,6 +14,10 @@ public class EnemyAttack : MonoBehaviour
     private int animationLayer;
     private int lastAttack = -1;
     private GameObject currentPrefab;
+    private GameObject attackPrefab;
+    private ElementData currentElementData;
+    private ElementData attackElementData;
+    private FighterType mode;
 
     void Awake()
     {
@@ -31,15 +35,10 @@ public class EnemyAttack : MonoBehaviour
                 Vector3 attackDirection = 
                     (target.position - currentBinding.origin.position).normalized;
 
-                GameObject attackPrefab = currentPrefab != null 
-                    ? currentPrefab : currentBinding.prefab;
 
-                Projectile.SpawnProjectile(
-                    attackPrefab,
-                    gameObject,
-                    currentBinding.origin.position,
-                    attackDirection
-                );
+                Projectile.SpawnProjectile(attackPrefab, attackElementData,
+                    gameObject, currentBinding.origin.position, attackDirection, target);
+
                 hasLaunched = true;
             }
             if (timer >= currentBinding.timeAfterSpawn)
@@ -59,6 +58,11 @@ public class EnemyAttack : MonoBehaviour
     {
         currentPrefab = prefab;
     }
+    
+    public void SetAttackData(ElementData elementData)
+    {
+        currentElementData = elementData;
+    }
 
     public bool PlayRandomAttack(Transform target, out float animationLength)
     {
@@ -69,14 +73,19 @@ public class EnemyAttack : MonoBehaviour
 
         int index = Random.Range(0, attackBindings.Length);
         // int index = (lastAttack + 1) % attackBindings.Length;
-        AttackBinding binding = attackBindings[index];
+        currentBinding = attackBindings[index];
 
-        if (!fighter.TryUseStamina(binding.prefab.GetComponent<Projectile>().elementData.staminaCost))
+        attackPrefab = currentPrefab != null 
+            ? currentPrefab : currentBinding.prefab;
+
+        attackElementData = currentElementData != null
+            ? currentElementData : currentBinding.elementData;
+
+        if (!fighter.TryUseStamina(attackElementData.staminaCost))
             return false;
 
         lastAttack = index;
-        
-        currentBinding = binding;
+
         this.target = target;
 
         timer = 0;
@@ -101,6 +110,7 @@ public class EnemyAttack : MonoBehaviour
         public AnimationClip animation;
         public Transform origin;
         public GameObject prefab;
+        public ElementData elementData;
     }
 }
 

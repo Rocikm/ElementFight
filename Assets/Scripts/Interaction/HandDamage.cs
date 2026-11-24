@@ -7,7 +7,6 @@ public class HandDamage : MonoBehaviour, IDamageable
     [SerializeField] private PlayerData playerData;
     [SerializeField] ParticleSystem blockParticles;
     [SerializeField] AudioClip blockAudio;
-    [SerializeField] AudioClip damageAudio;
     private AudioManager audioManager;
     private EffectManager effectManager;
 
@@ -27,6 +26,5 @@ public class HandDamage : MonoBehaviour, IDamageable
         }
 
         player.TakeDamage(elementData);
-        audioManager.PlaySoundAtPosition(damageAudio, transform.position);
     }
 }

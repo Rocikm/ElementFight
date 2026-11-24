@@ -11,6 +11,10 @@ public class PlayerDamageVisual : MonoBehaviour
     [SerializeField] private Color damageColor = Color.red;
     [SerializeField] private float flashDuration = 0.2f;
 
+    [Header("AAA")]
+    [SerializeField] AudioClip damageAudio;
+    private AudioManager audioManager;
+
     private Material[] materials;
     private Color[] originalColors;
 
@@ -28,6 +32,8 @@ public class PlayerDamageVisual : MonoBehaviour
 
             originalColors[i] = materials[i].GetColor("_BaseColor");
         }
+
+        audioManager = GameManager.Instance.audioManager;
     }
 
     private void OnEnable()
@@ -42,6 +48,8 @@ public class PlayerDamageVisual : MonoBehaviour
 
     private void HandleDamageTaken(Fighter fighter, float damage)
     {
+        audioManager.PlaySoundAtPosition(damageAudio, transform.position);
+
         if (flashCoroutine != null)
             StopCoroutine(flashCoroutine);
 

@@ -7,7 +7,7 @@ public class ProjectileAudio : MonoBehaviour, IProjectileComponent
     public void Initialize(Projectile projectile)
     {
         audioManager = GameManager.Instance.audioManager;
-        audioData = projectile.elementData.audioData;
+        audioData = projectile.ElementData.audioData;
 
         projectile.Spawned += OnSpawned;
         projectile.Launched += OnLaunched;
