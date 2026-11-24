@@ -92,7 +92,7 @@ public class FightBoard : MonoBehaviour
 
         playerTransform.position = new Vector3(
             playerStart.position.x, playerTransform.position.y, playerStart.position.z);
-        player.transform.rotation = playerStart.rotation;
+        // player.transform.rotation = playerStart.rotation;
 
         fightStarted = true;
 
@@ -114,7 +114,7 @@ public class FightBoard : MonoBehaviour
         
         playerTransform.position = new Vector3(
             playerStart.position.x, playerTransform.position.y, playerStart.position.z);
-        player.transform.rotation = playerStart.rotation;
+        // player.transform.rotation = playerStart.rotation;
 
         fightResultText.gameObject.SetActive(true);
         if (winner == player)
