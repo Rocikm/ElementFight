@@ -169,6 +169,8 @@ public class Projectile : MonoBehaviour
             Impacted?.Invoke(this, other);
             movement.Stop();
 
+            GetComponent<Collider>().enabled = false;
+
             timer = elementData.cleanupTime;
             state = ProjectileState.Impacted;
         }
